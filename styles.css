@@ -4,25 +4,34 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #C28A38; /* Background color for the whole page */
+    background-color: #C28A38;
     margin: 0;
-    color: #f7f5f2; /* Text color for the whole page */
+    color: #f7f5f2;
 }
 
 .container {
-    background-color: #f7f5f2; /* Background color for the container */
+    background-color: #f7f5f2;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 450px;
-    text-align: center; /* Center align text inside container */
+    text-align: center;
 }
 
 h1 {
-    font-size: 36px; /* Increase font size for better visibility */
-    color: #333; /* Dark color for better contrast */
+    font-size: 36px;
+    color: #333;
     margin-bottom: 20px;
+}
+
+#items-container {
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Optional, adds some spacing */
+    border: 1px solid #ddd; /* Optional, adds a border */
+    border-radius: 8px; /* Optional, rounds the corners */
+    background-color: #f9f9f9; /* Optional, sets background color */
 }
 
 .item {
@@ -32,14 +41,14 @@ h1 {
     justify-content: space-between;
     padding: 10px;
     border-radius: 8px;
-    background-color: #e0e0e0; /* Background color for items */
+    background-color: #e0e0e0;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .item span {
     flex: 2;
     font-size: 21.5px;
-    color: #333; /* Text color inside items */
+    color: #333;
 }
 
 .quantity-controls {
@@ -48,8 +57,8 @@ h1 {
 }
 
 .quantity-controls button {
-    background-color: #C28A38; /* Button background color */
-    color: #f7f5f2; /* Button text color */
+    background-color: #C28A38;
+    color: #f7f5f2;
     border: none;
     padding: 12px;
     margin: 0 5px;
@@ -60,14 +69,14 @@ h1 {
 }
 
 .quantity-controls button:hover {
-    background-color: #a57a2b; /* Button hover color */
+    background-color: #a57a2b;
 }
 
 .quantity-controls span {
     font-size: 18px;
     width: 40px;
     text-align: center;
-    color: #333; /* Text color for quantities */
+    color: #333;
 }
 
 .button-group {
@@ -76,9 +85,40 @@ h1 {
     gap: 10px;
 }
 
-#calculateBtn, #resetBtn, #addItemBtn {
+.add-remove-buttons {
+    display: flex;
+}
+
+#addItemBtn, #removeItemBtn {
     padding: 12px;
-    color: #f7f5f2; /* Button text color */
+    color: #f7f5f2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    width: 50%;
+}
+
+#addItemBtn {
+    background-color: #C28A38;
+}
+
+#addItemBtn:hover {
+    background-color: #a57a2b;
+}
+
+#removeItemBtn {
+    background-color: #dc3545;
+}
+
+#removeItemBtn:hover {
+    background-color: #c82333;
+}
+
+#calculateBtn, #resetBtn {
+    padding: 12px;
+    color: #f7f5f2;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -87,34 +127,26 @@ h1 {
 }
 
 #calculateBtn {
-    background-color: #28a745; /* Calculate button color (green) */
+    background-color: #28a745;
 }
 
 #calculateBtn:hover {
-    background-color: #218838; /* Calculate button hover color */
+    background-color: #218838;
 }
 
 #resetBtn {
-    background-color: #dc3545; /* Reset button color */
+    background-color: #dc3545;
 }
 
 #resetBtn:hover {
-    background-color: #c82333; /* Reset button hover color */
-}
-
-#addItemBtn {
-    background-color: #C28A38; /* Add Item button color */
-}
-
-#addItemBtn:hover {
-    background-color: #a57a2b; /* Add Item button hover color */
+    background-color: #c82333;
 }
 
 #totalAmount {
     font-size: 22px;
     text-align: center;
     margin-top: 20px;
-    color: #333; /* Text color for total amount */
+    color: #333;
 }
 
 .hidden {
@@ -134,7 +166,7 @@ h1 {
 }
 
 .modal-content {
-    background-color: #f7f5f2; /* Background color for modal content */
+    background-color: #f7f5f2;
     margin: 15% auto;
     padding: 20px;
     border-radius: 12px;
@@ -158,30 +190,30 @@ h1 {
 }
 
 .modal-content h2 {
-    color: #333; /* Header color inside modal */
+    color: #333;
 }
 
 #modalTotalAmount {
-    font-size: 36px; /* Larger font size for total amount */
-    color: #C28A38; /* Light color for the total amount */
+    font-size: 36px;
+    color: #C28A38;
     margin-top: 20px;
 }
 
-#itemForm {
+#itemForm, #removeItemForm, #editItemForm {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
 }
 
-#itemForm input {
+#itemForm input, #removeItemForm input, #editItemForm input {
     padding: 8px;
     font-size: 16px;
 }
 
-#itemSubmitBtn {
-    background-color: #C28A38; /* Button background color */
-    color: #f7f5f2; /* Button text color */
+#itemSubmitBtn, #removeItemSubmitBtn, #editItemSubmitBtn {
+    background-color: #C28A38;
+    color: #f7f5f2;
     border: none;
     padding: 12px;
     border-radius: 8px;
@@ -190,21 +222,31 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-#itemSubmitBtn:hover {
-    background-color: #a57a2b; /* Button hover color */
+#itemSubmitBtn:hover, #removeItemSubmitBtn:hover, #editItemSubmitBtn:hover {
+    background-color: #a57a2b;
 }
 
-/* Edit button style */
-.item .edit-btn {
-    background: none; /* No fill color */
-    border: none;
-    color: #C28A38; /* Text color for edit button */
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: 10px;
-    transition: color 0.3s ease;
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #5cb85c;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.item .edit-btn:hover {
-    color: #a57a2b; /* Hover color for edit button */
+.message.show {
+    opacity: 1;
+}
+
+.message.error {
+    background-color: #d9534f;
+}
+
+.message.success {
+    background-color: #5bc0de;
 }
